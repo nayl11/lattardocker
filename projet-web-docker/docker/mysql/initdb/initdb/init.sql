@@ -1,10 +1,13 @@
 -- Création de la table clients
+USE Gestion1_db;
 CREATE TABLE IF NOT EXISTS clients (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    nom VARCHAR(100),
-    email VARCHAR(100),
+    nom VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
     telephone VARCHAR(20)
 );
+
+
 
 -- Création de la table appointments
 CREATE TABLE IF NOT EXISTS appointments (

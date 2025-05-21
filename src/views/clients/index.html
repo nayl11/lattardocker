@@ -30,7 +30,7 @@ $appointments = $relatedEntityController->getAllAppointments();
             </tr>
         </thead>
         <tbody>
-            <?php if (!empty($appointments)) : ?>
+            <?php if (!empty($appointment)) : ?>
                 <?php foreach ($appointments as $appointment): ?>
                     <tr>
                         <td><?= htmlspecialchars($appointment['client_id']) ?></td>

@@ -4,5 +4,7 @@ class Client {
     public $nom;
     public $email;
     public $telephone;
+
+
+   
 }
-?>

@@ -6,5 +6,5 @@ class Appointment {
     public $heure;
     public $service;
     public $commentaire;
+
 }
-?>

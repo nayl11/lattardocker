@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../../controllers/RelatedEntityController.php';
 
 $relatedEntityController = new RelatedEntityController();
-$appointments = $relatedEntityController->getAllAppointments();
+$appointment = $relatedEntityController->getAllAppointment();
 ?>
 
 <h2>Liste des Rendez-vous</h2>

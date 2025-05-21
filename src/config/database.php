@@ -1,23 +1,30 @@
 <?php
+
 class Database {
-    private $host = 'mysql';            // OK, nom du service Docker
-    private $db_name = 'Gestion1_db'; // Vérifie que ce nom correspond à ta base dans docker-compose/init.sql
-    private $username = 'user';         // OK si tu as bien ce user dans MySQL
-    private $password = 'password';     // Idem
+    private $host = 'mysql'; // DOCKER : utiliser le nom du service défini dans docker-compose.yml
+    private $db_name = 'Gestion1_db';
+    private $username = 'user';
+    private $password = 'password';
+    private $charset = 'utf8mb4';
+
     public $conn;
 
     public function getConnection() {
         $this->conn = null;
+
+        $dsn = "mysql:host=mysql;port=3306;dbname=Gestion1_db";
+
+
         try {
-            $dsn = "mysql:host={$this->host};dbname={$this->db_name};charset=utf8"; // charset dans le DSN
-            $this->conn = new PDO($dsn, $this->username, $this->password);
-            // Définir le mode d'erreur sur Exception
-            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch (PDOException $exception) {
-            echo "Erreur de connexion : " . $exception->getMessage();
-            exit; // arrêter le script si pas de connexion
+            $this->conn = new PDO($dsn, $this->username, $this->password, [
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                PDO::ATTR_EMULATE_PREPARES => false,
+            ]);
+        } catch (PDOException $e) {
+            die("Erreur de connexion à la base de données : " . $e->getMessage());
         }
+
         return $this->conn;
     }
 }
-?>
