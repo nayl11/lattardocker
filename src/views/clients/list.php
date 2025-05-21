@@ -1,16 +1,53 @@
-<?php
-require_once __DIR__ . '/../../controllers/EntityController.php';
+<?php 
+require_once __DIR__ . '/../../controllers/RelatedEntityController.php';
 
-$entityController = new EntityController();
-$clients = $entityController->getAllClients();
+// Instanciation du contrôleur
+$relatedEntityController = new RelatedEntityController();
+// Récupération de tous les rendez-vous
+$appointments = $relatedEntityController->getAllAppointments();
 ?>
 
-<h2>Liste des Clients</h2>
-<ul>
-    <?php foreach ($clients as $client): ?>
-        <li><?php echo htmlspecialchars($client['nom']); ?> - <?php echo htmlspecialchars($client['email']); ?></li>
-    <?php endforeach; ?>
-</ul>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Liste des Rendez-vous</title>
+    <link rel="stylesheet" href="../../css/styles.css" />
+</head>
+<body>
+    <h2>Liste des Rendez-vous</h2>
 
-<a href="form.php">Ajouter un client</a>
-<a href="../../index.php">Retour à l'accueil</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Client ID</th>
+                <th>Service</th>
+                <th>Date</th>
+                <th>Heure</th>
+                <th>Commentaire</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php if (!empty($appointments)) : ?>
+                <?php foreach ($appointments as $appointment): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($appointment['client_id']) ?></td>
+                        <td><?= htmlspecialchars($appointment['service']) ?></td>
+                        <td><?= htmlspecialchars($appointment['date']) ?></td>
+                        <td><?= htmlspecialchars($appointment['heure']) ?></td>
+                        <td><?= htmlspecialchars($appointment['commentaire']) ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php else : ?>
+                <tr>
+                    <td colspan="5">Aucun rendez-vous trouvé.</td>
+                </tr>
+            <?php endif; ?>
+        </tbody>
+    </table>
+
+    <a href="form.php">Ajouter un rendez-vous</a>
+    <a href="../../index.php">Retour à l'accueil</a>
+</body>
+</html>

@@ -15,7 +15,7 @@ $appointments = $relatedEntityController->getAllAppointments();
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Gestion des Rendez-vous</title>
-    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
     <h1>Bienvenue dans le gestionnaire des rendez-vous</h1>
@@ -39,6 +39,6 @@ $appointments = $relatedEntityController->getAllAppointments();
     </ul>
 
     <h3><a href="views/clients/form.php">Ajouter un client</a></h3>
-    <h3><a href="views/appoinment/form.php">Ajouter un rendez-vous</a></h3>
+    <h3><a href="views/appointments/form.php">Ajouter un rendez-vous</a></h3>
 </body>
 </html>

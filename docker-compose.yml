@@ -1,11 +1,11 @@
-version: '3'
+version: '3.8'  # version un peu plus récente
 
 services:
   php:
-    image: php:8.1-apache
     build:
       context: ./docker/php
       dockerfile: Dockerfile
+    image: php:8.1-apache
     container_name: Gestion1_php
     volumes:
       - ./src:/var/www/html
@@ -29,6 +29,21 @@ services:
       - mysql_data:/var/lib/mysql
     ports:
       - "3306:3306"
+    networks:
+      - app_network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: Gestion1_phpmyadmin
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: user
+      PMA_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "8081:80"   # Accessible sur localhost:8081
+    depends_on:
+      - mysql
     networks:
       - app_network
 
