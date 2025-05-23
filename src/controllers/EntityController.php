@@ -13,11 +13,11 @@ class EntityController {
    public function getAllClients() {
     $stmt = $this->db->query("SELECT DATABASE() AS dbname");
     $dbname = $stmt->fetch(PDO::FETCH_ASSOC)['dbname'];
-    echo "Base de données active : " . $dbname . "<br>";
+    // echo "Base de données active : " . $dbname . "<br>";
 
     $stmt = $this->db->query("SHOW TABLES");
     $tables = $stmt->fetchAll(PDO::FETCH_COLUMN);
-    echo "Tables visibles : <pre>";
+    // echo "Tables visibles : <pre>";
     print_r($tables);
     echo "</pre>";
 
